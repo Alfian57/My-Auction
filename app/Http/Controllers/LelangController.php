@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LelangExport;
 use App\Models\Barang;
 use App\Models\HistoryLelang;
 use App\Models\Lelang;
 use App\Models\Pemenang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LelangController extends Controller
 {
@@ -65,5 +67,11 @@ class LelangController extends Controller
                 ->get(),
             'idPemenang' => $idPemenang
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $name = 'Data Lelang ' . $request->date . '.xlsx';
+        return Excel::download(new LelangExport($request->date), $name);
     }
 }

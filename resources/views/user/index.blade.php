@@ -7,7 +7,7 @@
     <title>My Auction | Home</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/user/img/favicon.png" />
+    <link rel="icon" href="/assets/img/my-auction-logo.png">
 
     <!-- ======== CSS here ======== -->
     <link rel="stylesheet" href="assets/user/css/bootstrap.min.css" />
@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     @include('components.user.preloader')
     @include('components.user.navbar')
 
@@ -55,8 +56,74 @@
     <!-- ======== barang-section start ======== -->
     <section id="barang" class="feature-section pt-120">
         <div class="container">
+            <h3 class="text-center mb-5">List Lelang</h3>
             <div class="row justify-content-center">
                 @foreach ($lelang as $item)
+                    {{-- Tawar Modal --}}
+                    <div class="modal fade" id="tawarModal{{ $item->id_15458 }}" tabindex="-1"
+                        aria-labelledby="tawarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Penawaran</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form
+                                        action="{{ route('penawaran', ['idLelang' => $item->id_15458, 'idBarang' => $item->barang->id_15458]) }}"
+                                        method="post">
+                                        @csrf
+                                        <h4 class="mb-3">Nominal Penawaran</h4>
+                                        <input type="number" id="penawaran_15458" class="form-control"
+                                            min="{{ $min[$loop->index] }}" placeholder="Masukan Nominal"
+                                            name="penawaran_15458">
+                                        <label>Mininal Penawaran:
+                                            <span class="text-primary">{{ $min[$loop->index] }}</span>
+                                        </label>
+                                        <button type="submit" class="btn btn-success mt-3 float-end">Tawar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- History Modal --}}
+                    <div class="modal fade" id="tawarHistory{{ $item->id_15458 }}" tabindex="-1"
+                        aria-labelledby="tawarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Riwayat Penawaran</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th>Nama User</th>
+                                                    <th>Nama Penawaran</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($item->historyLelang as $subItem)
+                                                    <tr>
+                                                        <td>{{ $subItem->masyarakat->nama_15458 }}</td>
+                                                        <td>{{ $subItem->penawaran_15458 }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button type="button" class="btn btn-danger float-end"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card col-md-4 rounded rounded-3 pt-3" style="background-color: #9FA8F6">
                         <img src="{{ asset('storage/' . $item->barang->image_15458) }}" class="card-img-top rounded"
                             alt="{{ $item->barang->nama_15458 }} Image">
@@ -64,12 +131,15 @@
                             <h5 class="card-title text-white">{{ $item->barang->nama_15458 }}</h5>
                             <p class="card-text my-3 text-white">{{ $item->barang->deskripsi_15458 }}</p>
                             <div class="row justify-content-center">
-                                <a href="#" class="btn btn-primary col-md-5 mx-1 my-3">History</a>
-                                <a href="#" class="btn btn-success col-md-5 mx-1 my-3">Tawar</a>
+                                <a href="#" class="btn btn-primary col-md-5 mx-1 my-3" data-bs-toggle="modal"
+                                    data-bs-target="#tawarHistory{{ $item->id_15458 }}">Riwayat</a>
+                                <a href="#" class="btn btn-success col-md-5 mx-1 my-3" data-bs-toggle="modal"
+                                    data-bs-target="#tawarModal{{ $item->id_15458 }}">Tawar</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                {{ $lelang->links() }}
             </div>
         </div>
     </section>

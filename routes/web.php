@@ -48,9 +48,7 @@ Route::group(['middleware' => 'auth:petugas'], function () {
         Route::post('/lelang/{idLelang}/history-lelang/{idHistory}', [HistoryLelangController::class, 'winner'])->name('history.pemenang');
         Route::get('/lelang/{idLelang}/history-lelang/create', [HistoryLelangController::class, 'create'])->name('history.create');
         Route::post('/lelang/{idLelang}/history-lelang', [HistoryLelangController::class, 'store'])->name('history.store');
-    });
-});
 
-Route::get('/test', function () {
-    return view('test');
+        Route::post('/lelang/export', [LelangController::class, 'export'])->name('lelang.export');
+    });
 });

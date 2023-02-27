@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="page-inner mt--3">
-        <form action="{{ route('barang.update', ['barang' => $barang->id_15458]) }}" method="post">
+        <form action="{{ route('barang.update', ['barang' => $barang->id_15458]) }}" method="post"
+            enctype="multipart/form-data">
             @method('put')
             @csrf
 

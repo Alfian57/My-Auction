@@ -21,7 +21,7 @@ class HomeController extends Controller
             $barang = Barang::where('nama_15458', 'like', request('search'))->pluck('id_15458');
             $lelang->whereIn('id_barang_15458', $barang);
         }
-        $lelangResult = $lelang->with('historyLelang')->paginate(20);
+        $lelangResult = $lelang->with('historyLelang')->with('masyarakat')->paginate(20);
 
         // Get Min Penawaran
         foreach ($lelangResult as $item) {
@@ -52,6 +52,7 @@ class HomeController extends Controller
             'title' => 'Dashboard',
             'lelangCount' => Lelang::where('status_15458', 'dibuka')->count(),
             'userCount' => Masyarakat::count(),
+            'barangCount' => Barang::count(),
             'petugasCount' => Petugas::count(),
         ]);
     }

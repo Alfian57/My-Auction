@@ -3,7 +3,8 @@
 @section('content')
     <div class="row">
         <div class="offset-lg-10 col-lg-2 offset-9 col-3">
-            <a href="{{ route('history.create', ['idLelang' => $lelang->id_15458]) }}" class="btn btn-success btn-round mb-3">
+            <a href="{{ route('history.create', ['idLelang' => $lelang->id_15458]) }}"
+                class="btn btn-outline-primary btn-round mb-3">
                 <i class="fa fa-plus"></i>
                 Tambah History
             </a>

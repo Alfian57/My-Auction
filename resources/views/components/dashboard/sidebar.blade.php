@@ -4,9 +4,11 @@
             <a class="nav-link @if (Request::is('dashboard*')) active @endif" href="{{ route('dashboard') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 21V9L12 3L20 9V21H14V14H10V21H4Z" fill="black" />
+                        <path
+                            d="M16.7917 11.625V3.875H27.125V11.625H16.7917ZM3.875 16.7917V3.875H14.2083V16.7917H3.875ZM16.7917 27.125V14.2083H27.125V27.125H16.7917ZM3.875 27.125V19.375H14.2083V27.125H3.875Z"
+                            fill="black" />
                     </svg>
 
                 </div>

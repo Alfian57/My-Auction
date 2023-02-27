@@ -10,7 +10,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Total User</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    300
+                                    {{ $userCount }}
                                 </h5>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Petugas</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    2,300
+                                    {{ $petugasCount }}
                                 </h5>
                             </div>
                         </div>
@@ -50,9 +50,9 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-capitalize font-weight-bold">New Barang</p>
+                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Barang</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    5,000
+                                    {{ $barangCount }}
                                 </h5>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Lelang</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    400
+                                    {{ $lelangCount }}
                                 </h5>
                             </div>
                         </div>

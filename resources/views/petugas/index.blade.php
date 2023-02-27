@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="offset-lg-10 col-lg-2 offset-9 col-3">
-            <a href="{{ route('petugas.create') }}" class="btn btn-success btn-round mb-3">
+            <a href="{{ route('petugas.create') }}" class="btn btn-outline-primary btn-round mb-3">
                 <i class="fa fa-plus"></i>
                 Tambah Petugas
             </a>
@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $item->nama_15458 }}</td>
                             <td>{{ $item->username_15458 }}</td>
-                            <td>{{ $item->level->nama_15458 }}</td>
+                            <td class="text-capitalize">{{ $item->level->nama_15458 }}</td>
                             <td>
                                 <div class="form-button-action">
                                     <a href="{{ route('petugas.edit', ['petuga' => $item->id_15458]) }}"
