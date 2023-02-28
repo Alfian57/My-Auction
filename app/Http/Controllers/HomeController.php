@@ -8,6 +8,7 @@ use App\Models\Lelang;
 use App\Models\Masyarakat;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -40,7 +41,13 @@ class HomeController extends Controller
             $min = null;
         }
 
+        // Get My History
+        $myHistory = Lelang::where('id_masyarakat_15458', Auth::guard('masyarakat')->user()->id_15458)
+            ->with('barang')
+            ->get();
+
         return view('user.index', [
+            'myHistory' => $myHistory,
             'lelang' => $lelangResult,
             'min' => $min,
         ]);

@@ -24,6 +24,10 @@
                                     <a class="page-scroll" href="#barang">Barang</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="btn btn-transparent" data-bs-toggle="modal"
+                                        data-bs-target="#myHistoryModal">History Menang</a>
+                                </li>
+                                <li class="nav-item">
                                     <form action="{{ route('logout') }}" method="post" class="pt-2">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-danger">Logout</button>

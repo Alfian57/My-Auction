@@ -18,6 +18,7 @@
 
 <body>
     @include('sweetalert::alert')
+    @include('components.user.history-modal')
     @include('components.user.preloader')
     @include('components.user.navbar')
 
